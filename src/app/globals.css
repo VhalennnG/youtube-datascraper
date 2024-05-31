@@ -2,32 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Poppins", sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.scrollable-transcript {
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.scrollable-description {
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+#Polygon-1,
+#Polygon-2,
+#Polygon-3,
+#Polygon-4,
+#Polygon-4,
+#Polygon-5 {
+  -webkit-animation: float 1s infinite ease-in-out alternate;
+  animation: float 1s infinite ease-in-out alternate;
+  position: absolute;
+  top: 109px;
+  left: 222px;
+}
+#Polygon-2 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+  left: 200px;
+  top: 350px;
+}
+#Polygon-3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+  left: 50px;
+  top: 150px;
+}
+#Polygon-4 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+  top: 477px;
+  right: 150px;
+}
+#Polygon-4 img {
+  float: right;
+}
+#Polygon-5 {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  top: 420px;
+  left: 42px;
+}
+
+@-webkit-keyframes float {
+  100% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
+
+@keyframes float {
+  100% {
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .Toastify__toast-container {
+    width: 85% !important;
+    max-width: 350px !important;
+    top: 2% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }

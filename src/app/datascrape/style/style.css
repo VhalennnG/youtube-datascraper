@@ -1,0 +1,25 @@
+/* CSS untuk scrollbar di browser berbasis WebKit (Chrome, Safari) */
+.elegant-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Lebar scrollbar */
+}
+
+.elegant-scrollbar::-webkit-scrollbar-track {
+  background: #2e2e2e; /* Warna latar belakang track */
+  border-radius: 10px;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* Warna scrollbar */
+  border-radius: 10px;
+  border: 2px solid #2e2e2e; /* Membuat ruang di sekitar thumb */
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Warna scrollbar saat di-hover */
+}
+
+/* CSS untuk scrollbar di Firefox */
+.elegant-scrollbar {
+  scrollbar-width: thin; /* Membuat scrollbar lebih tipis */
+  scrollbar-color: #888 #2e2e2e; /* Warna scrollbar dan track */
+}

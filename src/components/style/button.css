@@ -1,0 +1,70 @@
+.frame {
+  width: 90%;
+  text-align: center;
+}
+
+.custom-btn {
+  color: #fff;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.btn {
+  border: none;
+  background: rgb(152, 0, 58);
+  background: linear-gradient(0deg, rgb(255, 86, 120) 0%, rgb(31, 15, 19) 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.btn:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgb(152, 0, 58);
+  background: linear-gradient(0deg, rgb(162, 25, 41) 0%, rgb(53, 31, 59) 100%);
+}
+
+.btn:before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 5s ease-in-out infinite;
+}
+
+.btn:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
