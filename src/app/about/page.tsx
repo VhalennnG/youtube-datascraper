@@ -23,7 +23,7 @@ export default function AboutPage() {
                   className='lg:h-auto h-64 object-cover object-center rounded-3xl'
                   src='/vh.png'
                   width={800}
-                  height={1000}
+                  height={800}
                 />
               </div>
             </div>

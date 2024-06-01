@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import VideoDetails from "@/components/custom/VideoDetail";
 import FetchError from "@/components/custom/FetchError";
+import SEO from "@/components/custom/SEO";
 
 const NoSSR = dynamic(() => import("@/components/custom/YouTubePlayer"), {
   ssr: false,
@@ -106,62 +107,76 @@ export default function DataScrapePage() {
   }
 
   return (
-    <main className='bg-gradient-to-r from-gray-900 via-neutral-800 to-rose-900 w-full text-white pt-3'>
-      <div className=' pb-16 md:pt-0 pt-2  md:w-5/6 w-11/12 mx-auto'>
-        <div className='text-gray-600 body-font'>
-          <div className='container mx-auto'>
-            <div className='flex flex-col text-center w-full text-white'>
-              <h1 className='sm:text-3xl text-2xl font-bold md:mb-10 mb-6 lg:mt-0 mt-5'>
-                Data YouTube Video
-              </h1>
+    <main>
+      <SEO
+        title={videoDetails?.title}
+        description={
+          description ||
+          "Extract Data From Any YouTube Video, quickly and easily!"
+        }
+        keywords='YT Datascraper'
+        author={videoDetails?.author}
+        image='/vh.png'
+        url={`https://www.youtube.com/watch?v=${linkId}`}
+        siteName='https://ytdatascraper.vercel.app'
+      />
+      <section className='bg-gradient-to-r from-gray-900 via-neutral-800 to-rose-900 w-full text-white pt-3'>
+        <div className=' pb-16 md:pt-0 pt-2  md:w-5/6 w-11/12 mx-auto'>
+          <div className='text-gray-600 body-font'>
+            <div className='container mx-auto'>
+              <div className='flex flex-col text-center w-full text-white'>
+                <h1 className='sm:text-3xl text-2xl font-bold md:mb-10 mb-6 lg:mt-0 mt-5'>
+                  Data YouTube Video
+                </h1>
+              </div>
+              {progress != 101 ? ( // Render progress bar if loading is true
+                <div className='flex flex-col items-center justify-center py-60'>
+                  <div className='w-1/2 bg-gray-200 rounded-full'>
+                    <div
+                      className={`h-4 rounded-full ${
+                        progress <= 20
+                          ? "bg-red-500"
+                          : progress <= 40
+                          ? "bg-orange-500"
+                          : progress <= 60
+                          ? "bg-yellow-500"
+                          : progress <= 80
+                          ? "bg-blue-500"
+                          : "bg-green-500"
+                      }`}
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <span className='mt-2 text-slate-200'>{progress}%</span>
+                </div>
+              ) : (
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  <div className='order-1 md:order-1'>
+                    <NoSSR videoId={linkId} />
+                  </div>
+                  <div className='order-2 md:order-2'>
+                    <VideoDetails
+                      title={videoDetails?.title}
+                      author={videoDetails?.author}
+                      videoId={videoId}
+                      views={videoDetails?.viewCount}
+                      publishDate={videoDetails?.publishDate}
+                      duration={videoDetails?.duration}
+                      likes={videoDetails?.likes}
+                    />
+                  </div>
+                  <div className='order-3 md:order-3'>
+                    <Description text={description} />
+                  </div>
+                  <div className='order-4 md:order-4'>
+                    <Transcript text={transcript} />
+                  </div>
+                </div>
+              )}
             </div>
-            {progress != 101 ? ( // Render progress bar if loading is true
-              <div className='flex flex-col items-center justify-center py-60'>
-                <div className='w-1/2 bg-gray-200 rounded-full'>
-                  <div
-                    className={`h-4 rounded-full ${
-                      progress <= 20
-                        ? "bg-red-500"
-                        : progress <= 40
-                        ? "bg-orange-500"
-                        : progress <= 60
-                        ? "bg-yellow-500"
-                        : progress <= 80
-                        ? "bg-blue-500"
-                        : "bg-green-500"
-                    }`}
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <span className='mt-2 text-slate-200'>{progress}%</span>
-              </div>
-            ) : (
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <div className='order-1 md:order-1'>
-                  <NoSSR videoId={linkId} />
-                </div>
-                <div className='order-2 md:order-2'>
-                  <VideoDetails
-                    title={videoDetails?.title}
-                    author={videoDetails?.author}
-                    videoId={videoId}
-                    views={videoDetails?.viewCount}
-                    publishDate={videoDetails?.publishDate}
-                    duration={videoDetails?.duration}
-                    likes={videoDetails?.likes}
-                  />
-                </div>
-                <div className='order-3 md:order-3'>
-                  <Description text={description} />
-                </div>
-                <div className='order-4 md:order-4'>
-                  <Transcript text={transcript} />
-                </div>
-              </div>
-            )}
           </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

@@ -189,29 +189,52 @@ function parseTranscriptEndpoint(document: any, langCode?: string) {
 export function extractYouTubeID(urlOrID: string): string | null {
   // Regular expression for YouTube ID format
   const regExpID = /^[a-zA-Z0-9_-]{11}$/;
+  const regExpShareID = /^[a-zA-Z0-9_-]{11}/;
 
   // Check if the input is a YouTube ID
   if (regExpID.test(urlOrID)) {
     return urlOrID;
   }
 
+  // Check if the input is a YouTube share ID
+  if (regExpShareID.test(urlOrID)) {
+    return urlOrID;
+  }
+
   // Regular expression for standard YouTube links
-  const regExpStandard = /youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
+  const regExpStandard = /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+
+  // Regular expression for YouTube share links
+  const regExpShare = /youtu\.be\/([a-zA-Z0-9_-]{11})/;
 
   // Regular expression for YouTube Shorts links
-  const regExpShorts = /youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/;
+  const regExpShorts = /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/;
+
+  // Regular expression for YouTube share Shorts links
+  const regExpShortShare = /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/;
 
   // Check for standard YouTube link
-  const matchStandard = urlOrID.match(regExpStandard);
+  let match = urlOrID.match(regExpStandard);
+  if (match) {
+    return match[1];
+  }
 
-  if (matchStandard) {
-    return matchStandard[1];
+  // Check for YouTube share link
+  match = urlOrID.match(regExpShare);
+  if (match) {
+    return match[1];
   }
 
   // Check for YouTube Shorts link
-  const matchShorts = urlOrID.match(regExpShorts);
-  if (matchShorts) {
-    return matchShorts[1];
+  match = urlOrID.match(regExpShorts);
+  if (match) {
+    return match[1];
+  }
+
+  // Check for YouTube Shorts link
+  match = urlOrID.match(regExpShortShare);
+  if (match) {
+    return match[1];
   }
 
   // Return null if no match is found
