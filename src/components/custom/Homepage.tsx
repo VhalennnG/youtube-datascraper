@@ -17,7 +17,7 @@ export default function Homepage() {
     } else {
       toast.error("Invalid YouTube link", {
         theme: "dark",
-        position: "top-center", // Position the toast at the bottom center
+        position: "top-center",
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
