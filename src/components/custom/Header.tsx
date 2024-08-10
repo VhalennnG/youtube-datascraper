@@ -17,11 +17,11 @@ export default function Header() {
               height={200}
             />
           </Link>
-          <div className='flex items-center lg:order-2'>
+          {/* <div className='flex items-center lg:order-2'>
             <Link href='/about'>
               <Button text='About Me' addStyles='w-28 md:w-24 h-10' />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
