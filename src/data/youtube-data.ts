@@ -23,6 +23,8 @@ async function fetchTranscript(videoId: string, config: YtFetchConfig = {}) {
       {
         headers: {
           "User-Agent": USER_AGENT,
+          "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+          Pragma: "no-cache",
         },
       }
     )
@@ -63,6 +65,8 @@ async function fetchVideoDetails(videoId: string) {
       {
         headers: {
           "User-Agent": USER_AGENT,
+          "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+          Pragma: "no-cache",
         },
       }
     ).then((res) => res.text());
