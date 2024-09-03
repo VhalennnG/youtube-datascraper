@@ -65,7 +65,7 @@ async function fetchVideoDetails(videoId: string) {
       {
         headers: {
           "User-Agent": USER_AGENT,
-          "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
+          "Cache-Control": "no-cache",
           Pragma: "no-cache",
         },
       }
@@ -87,13 +87,11 @@ async function fetchVideoDetails(videoId: string) {
 
     const data = JSON.parse(dataString.trim());
 
-    const videoDetails = data.videoDetails;
-    // console.log("details: ", videoDetails);
-
+    const videoDetails = data.videoDetails || {};
     const description =
       videoDetails.shortDescription || "No description available";
     const title = videoDetails.title || "No title available";
-    const author = videoDetails.author || "No title available";
+    const author = videoDetails.author || "No author available";
     const viewCount = videoDetails.viewCount || "No view count available";
     const duration = videoDetails.lengthSeconds
       ? parseInt(videoDetails.lengthSeconds)
@@ -111,14 +109,10 @@ async function fetchVideoDetails(videoId: string) {
 
     const engagementData = JSON.parse(engagementDataString.trim());
 
-    // console.log(engagementData);
-
     const primaryInfoRenderer =
       engagementData.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(
         (content: any) => content.videoPrimaryInfoRenderer
       )?.videoPrimaryInfoRenderer;
-
-    // console.log("primary:", primaryInfoRenderer);
 
     if (!primaryInfoRenderer)
       throw new Error("Failed to locate primary info renderer!");
@@ -134,7 +128,7 @@ async function fetchVideoDetails(videoId: string) {
         ?.likeButtonViewModel?.toggleButtonViewModel?.toggleButtonViewModel
         ?.defaultButtonViewModel?.buttonViewModel;
 
-    const likes = likeButtonRenderer.accessibilityText || "0";
+    const likes = likeButtonRenderer?.accessibilityText || "0";
 
     return {
       title,
